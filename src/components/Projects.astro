@@ -1,0 +1,21 @@
+---
+const projects = [
+  { name: "Data Engineering workshop", href: "https://github.com/vndv/de_workshop" },
+  { name: "LearningSQL", href: "https://github.com/vndv/LearningSQL" },
+];
+---
+
+<h2>Projects</h2>
+<div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-2">
+  {
+    projects.map((project) => (
+      <a
+        class="project-link border-2 border-slate-800 dark:border-neutral-300 hover:border-sky-500"
+        href={project.href}
+        target="_blank"
+      >
+        {project.name}
+      </a>
+    ))
+  }
+</div>
