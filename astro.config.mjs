@@ -8,6 +8,5 @@ export default defineConfig({
     assets: true,
   },
   integrations: [tailwind()],
-    site: 'https://vndv.github.io',
-    base: '/blog',
+  site: 'https://vndv.github.io'
 });
