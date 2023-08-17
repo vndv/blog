@@ -6,7 +6,7 @@ tags:
 description: "Articles about database"
 ---
 
-# Что нужно знать о базах данных.
+
 
 ![](./images/1.png)
 
