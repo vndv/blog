@@ -1,16 +1,59 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import fs from 'fs/promises';
+import path from 'path';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map(post => ({
+  const allPaths = [];
+
+  // Добавляем пути для постов
+  const postPaths = posts.map(post => ({
     params: { slug: post.slug },
-    props: { post },
+    props: { post }
   }));
+  allPaths.push(...postPaths);
+  
+  // Добавляем пути для изображений
+  for (const post of posts) {
+    try {
+      const imagesDir = path.join(process.cwd(), 'src/content/blog', post.slug, 'images');
+      const files = await fs.readdir(imagesDir);
+      
+      for (const file of files) {
+        if (file.match(/\.(jpg|jpeg|png|gif|svg)$/i)) {
+          allPaths.push({
+            params: { 
+              slug: `images/${file}`
+            },
+            props: { 
+              imagePath: path.join(post.slug, 'images', file)
+            }
+          });
+        }
+      }
+    } catch (error) {
+      continue;
+    }
+  }
+  
+  return allPaths;
 }
 
-const { post } = Astro.props;
+const { post, imagePath } = Astro.props;
+
+// Если это запрос к изображению
+if (imagePath) {
+  const fullPath = path.join(process.cwd(), 'src/content/blog', imagePath);
+  const buffer = await fs.readFile(fullPath);
+  return new Response(buffer, {
+    headers: {
+      'Content-Type': `image/${path.extname(fullPath).slice(1)}`
+    }
+  });
+}
+
 const { Content } = await post.render();
 ---
 
