@@ -1,0 +1,40 @@
+---
+interface Props {
+  post: {
+    url: string;
+    frontmatter: {
+      title: string;
+      description: string;
+      date: string;
+      tags: string[];
+    };
+  };
+}
+
+const { post } = Astro.props;
+---
+
+<article class="bg-secondary/20 rounded-lg p-6 transition-all duration-200 hover:scale-105 hover:bg-secondary/30">
+  <a href={post.url}>
+    <h3 class="text-xl font-semibold mb-2 hover:text-primary">
+      {post.frontmatter.title}
+    </h3>
+    <p class="text-gray-400 mb-4">
+      {post.frontmatter.description}
+    </p>
+    <div class="flex flex-wrap gap-2 mb-4">
+      {post.frontmatter.tags.map(tag => (
+        <span class="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs">
+          {tag}
+        </span>
+      ))}
+    </div>
+    <time class="text-sm text-gray-500">
+      {new Date(post.frontmatter.date).toLocaleDateString('ru-RU', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })}
+    </time>
+  </a>
+</article> 

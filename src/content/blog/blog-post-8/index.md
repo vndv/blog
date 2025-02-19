@@ -1,6 +1,6 @@
 ---
 title: "pip install data-stack"
-pubDate: 2024-04-26
+date: "2024-04-26"
 tags:
   - "data stack"
 description: "The Pip install data stack"

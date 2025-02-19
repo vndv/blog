@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'Querynomic',
+    description: 'Введение в SQL для начинающих и нетерпеливых',
+    link: 'https://querynomic.one/#/',
+    tags: ['SQl', 'Docsify',]
+  },
+  {
+    title: 'Data Whisperer',
+    description: 'Telegram канал про современные инструменты для обработки данных',
+    link: 'https://t.me/data_whisperer',
+    tags: ['Telegram',]
+  },
+];
+---
+
+<BaseLayout title="Проекты | Ivan Matveev">
+  <section class="py-12">
+    <h1 class="text-4xl font-bold mb-8">Проекты</h1>
+    
+    <div class="grid gap-8 md:grid-cols-2">
+      {projects.map(project => (
+        <article class="bg-secondary/20 rounded-lg p-6 hover:bg-secondary/30 transition-colors">
+          <h3 class="text-xl font-semibold mb-2">
+            <a href={project.link} target="_blank" rel="noopener noreferrer" class="hover:text-primary">
+              {project.title}
+            </a>
+          </h3>
+          <p class="text-gray-400 mb-4">{project.description}</p>
+          <div class="flex flex-wrap gap-2">
+            {project.tags.map(tag => (
+              <span class="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout> 

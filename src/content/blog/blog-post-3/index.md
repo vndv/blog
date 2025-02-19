@@ -1,9 +1,9 @@
 ---
 title: "Как работает Database Sharding"
-pubDate: 2023-17-08
+description: "Database Sharding Explained"
+date: "2023-08-17"
 tags:
   - "database"
-description: "Database Sharding Explained"
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "A Crash Course in Redis"
-pubDate: 2023-11-25
+date: "2023-11-25"
 tags:
   - "database"
 description: "A Crash Course in Redis"

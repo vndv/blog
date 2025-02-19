@@ -1,15 +1,67 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import BlogFeed from "@components/BlogFeed.astro";
-import Projects from "@components/Projects.astro";
-import About from "@components/About.astro"
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
 
-const pageTitle = "Hi, there 👋";
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => 
+  b.data.date.valueOf() - a.data.date.valueOf()
+);
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-  <h1>{pageTitle}</h1>
-  <About />
-  <Projects />
-  <BlogFeed />
+<BaseLayout title="Главная | Ivan Matveev">
+  <section class="py-20">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl font-bold mb-4">
+        Привет 👋
+      </h1>
+      <p class="text-gray-400 text-lg mb-8">
+        Меня зовут Иван. Я Data Engineer с опытом построения data-платформ и ETL/ELT пайплайнов. 
+        Пишу о современных инструментах обработки данных, лучших практиках Data Engineering,
+        построении дата-платформ и data quality. Делюсь опытом работы с Airflow, dbt, Trino
+        и другими инструментами из экосистемы больших данных.
+      </p>
+      <div class="flex gap-4">
+        <a 
+          href="/blog" 
+          class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          Читать блог
+        </a>
+        <a 
+          href="/about" 
+          class="inline-flex items-center px-4 py-2 bg-secondary/50 text-white rounded-lg hover:bg-secondary/70 transition-colors"
+        >
+          Обо мне
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10">
+    <h2 class="text-2xl font-bold mb-8">Последние записи</h2>
+    <div class="grid gap-8 md:grid-cols-2">
+      {sortedPosts.slice(0, 4).map(post => (
+        <BlogCard post={{
+          url: `/blog/${post.slug}`,
+          frontmatter: {
+            title: post.data.title,
+            description: post.data.description,
+            date: post.data.date,
+            tags: post.data.tags
+          }
+        }} />
+      ))}
+    </div>
+    {sortedPosts.length > 4 && (
+      <div class="mt-10 text-center">
+        <a 
+          href="/blog" 
+          class="inline-flex items-center px-4 py-2 bg-secondary/50 text-white rounded-lg hover:bg-secondary/70 transition-colors"
+        >
+          Все записи
+        </a>
+      </div>
+    )}
+  </section>
 </BaseLayout>

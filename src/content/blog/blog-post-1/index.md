@@ -1,6 +1,6 @@
 ---
 title: "Что нужно знать о базах данных"
-pubDate: 2023-01-08
+date: "2023-01-08"
 tags:
   - "database"
 description: "Articles about database"

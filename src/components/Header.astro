@@ -1,16 +1,58 @@
 ---
-import Nav from "./Nav.astro";
+
+const navItems = [
+  { title: 'Блог', path: '/blog' },
+  { title: 'Проекты', path: '/projects' },
+  { title: 'Обо мне', path: '/about' },
+];
 ---
 
-<header class="flex justify-between my-4 border-b-2 border-b-sky-500 pb-2">
-  <div class="text-left">
-    <span
-      ><a href="/" class="tracking-widest no-underline text-xl"
-        >~/vndv git:(main)</a
-      ></span
-    >
-  </div>
-  <div class="text-right">
-    <Nav />
+<header class="sticky top-0 z-50 backdrop-blur-sm bg-background/80 border-b border-gray-800">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <nav class="flex items-center justify-between h-16">
+      <a href="/" class="text-xl font-bold hover:text-primary transition-colors">
+        vndv
+      </a>
+      
+      <div class="hidden md:flex space-x-8 items-center">
+        {navItems.map(item => (
+          <a 
+            href={item.path}
+            class="hover:text-primary transition-colors"
+          >
+            {item.title}
+          </a>
+        ))}
+      </div>
+
+      <button class="md:hidden p-2" id="menu-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Мобильное меню -->
+    <div class="md:hidden hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        {navItems.map(item => (
+          <a
+            href={item.path}
+            class="block px-3 py-2 rounded-md hover:bg-primary/10 hover:text-primary transition-colors"
+          >
+            {item.title}
+          </a>
+        ))}
+      </div>
+    </div>
   </div>
 </header>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

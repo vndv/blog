@@ -1,6 +1,6 @@
 ---
 title: "Правда о Airflow, Prefect, Dagster и Mage"
-pubDate: 2023-14-20
+date: "2023-14-20"
 tags:
   - "Tools"
 description: "Битва оркестровое за будущее."

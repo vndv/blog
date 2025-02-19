@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => 
+  b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+// Получаем уникальные теги
+const tags = [...new Set(posts.flatMap(post => post.data.tags || []))];
+---
+
+<BaseLayout title="Блог | Ваше имя">
+  <section class="py-12">
+    <h1 class="text-4xl font-bold mb-8">Блог</h1>
+    
+    {tags.length > 0 && (
+      <div class="mb-8">
+        <div class="flex flex-wrap gap-2">
+          {tags.map(tag => (
+            <button class="px-3 py-1 bg-secondary/30 rounded-full text-sm hover:bg-secondary/50 transition-colors">
+              #{tag}
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="grid gap-8 md:grid-cols-2">
+      {sortedPosts.map(post => (
+        <BlogCard post={{
+          url: `/blog/${post.slug}`,
+          frontmatter: {
+            title: post.data.title,
+            description: post.data.description,
+            date: post.data.date,
+            tags: post.data.tags
+          }
+        }} />
+      ))}
+    </div>
+  </section>
+</BaseLayout> 
