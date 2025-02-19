@@ -5,10 +5,10 @@ import TechIcon from '../components/TechIcon.astro';
 
 <BaseLayout title="Обо мне | Ivan Matveev">
   <section class="py-12">
-    <h1 class="text-4xl font-bold mb-8">Обо мне</h1>
+    <h1 class="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8">Обо мне</h1>
     
     <div class="prose prose-invert max-w-none">
-      <p class="text-lg text-gray-400 mb-6">
+      <p class="text-base sm:text-lg text-gray-400 mb-4 sm:mb-6">
          Привет! Меня зовут Иван. Здесь я пишу о программировании,
   работе с большими данными, современных инструментах в 
   мире Data Engineering.
@@ -24,10 +24,10 @@ import TechIcon from '../components/TechIcon.astro';
   Выстраиваю стратегию data quality и data governance.
 </p>
 <p class="text-lg text-gray-400 mb-6"><b>Консультации</b>: Я открыт для менторинга и работы со стартапами</p>
-      <h2 class="text-2xl font-bold mt-12 mb-6">Технологии</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <h2 class="text-xl sm:text-2xl font-bold mt-8 sm:mt-12 mb-4 sm:mb-6">Технологии</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         <div class="bg-secondary/20 p-4 rounded-lg">
-          <h3 class="font-bold mb-2">Data Processing</h3>
+          <h3 class="font-bold text-sm sm:text-base mb-2">Data Processing</h3>
           <ul class="text-gray-400">
             <TechIcon name="Trino" icon="/icons/trino.svg" />
             <TechIcon name="Airflow" icon="/icons/airflow.svg" />
@@ -36,7 +36,7 @@ import TechIcon from '../components/TechIcon.astro';
           </ul>
         </div>
         <div class="bg-secondary/20 p-4 rounded-lg">
-          <h3 class="font-bold mb-2">Databases</h3>
+          <h3 class="font-bold text-sm sm:text-base mb-2">Databases</h3>
           <ul class="text-gray-400">
             <TechIcon name="PostgreSQL" icon="/icons/postgres.svg" />
             <TechIcon name="Clickhouse" icon="/icons/clickhouse.svg" />
@@ -44,7 +44,7 @@ import TechIcon from '../components/TechIcon.astro';
           </ul>
         </div>
         <div class="bg-secondary/20 p-4 rounded-lg">
-          <h3 class="font-bold mb-2">Cloud & Tools</h3>
+          <h3 class="font-bold text-sm sm:text-base mb-2">Cloud & Tools</h3>
           <ul class="text-gray-400">
             <TechIcon name="AWS" icon="/icons/aws.svg" />
             <TechIcon name="Docker" icon="/icons/docker.svg" />
@@ -55,17 +55,17 @@ import TechIcon from '../components/TechIcon.astro';
         </div>
       </div>
 
-      <h2 class="text-2xl font-bold mt-12 mb-6">Опыт работы</h2>
-      <div class="space-y-8">
+      <h2 class="text-xl sm:text-2xl font-bold mt-8 sm:mt-12 mb-4 sm:mb-6">Опыт работы</h2>
+      <div class="space-y-6 sm:space-y-8">
         <div>
-          <h3 class="font-bold">Data Engineer</h3>
-          <p class="text-gray-400">SberHealth • 2024 - настоящее время</p>
-          <p class="mt-2">Построение дата-платформы, разработка ETL/ELT пайплайнов, внедрение data quality и data governance практик.</p>
+          <h3 class="font-bold text-base sm:text-lg">Data Engineer</h3>
+          <p class="text-gray-400 text-sm sm:text-base">SberHealth • 2024 - настоящее время</p>
+          <p class="mt-2 text-sm sm:text-base">Построение дата-платформы, разработка ETL/ELT пайплайнов, внедрение data quality и data governance практик.</p>
         </div>
         <div>
-          <h3 class="font-bold">Data Quality Engineer</h3>
-          <p class="text-gray-400">Delimobil • 2020 - 2022</p>
-          <p class="mt-2">Разработка и внедрение фреймворка для контроля качества данных. Создание и поддержка data quality чеков, метрик и алертов. Работа над улучшением процессов data governance и документации данных.</p>
+          <h3 class="font-bold text-base sm:text-lg">Data Quality Engineer</h3>
+          <p class="text-gray-400 text-sm sm:text-base">Delimobil • 2020 - 2022</p>
+          <p class="mt-2 text-sm sm:text-base">Разработка и внедрение фреймворка для контроля качества данных. Создание и поддержка data quality чеков, метрик и алертов. Работа над улучшением процессов data governance и документации данных.</p>
         </div>
       </div>
     </div>
