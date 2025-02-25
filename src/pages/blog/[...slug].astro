@@ -25,7 +25,7 @@ export async function getStaticPaths() {
         if (file.match(/\.(jpg|jpeg|png|gif|svg)$/i)) {
           allPaths.push({
             params: { 
-              slug: `images/${file}`
+              slug: `${post.slug}/images/${file}`
             },
             props: { 
               imagePath: path.join(post.slug, 'images', file)
